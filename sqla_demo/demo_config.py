@@ -10,12 +10,15 @@ import unicodedata as ucd
     #scope. So, there is no need to worry about the 'globals' 
     #polluting the namespace.
 
+config_file = 'config.json'
+
 conn_config = {}
 config_declared = False
 
 #a couple of templates for printing in a table
-header_spacer = '%10s %15s %13s'
-column_spacer = '%10s %15s %10s'
+header_spacer           = '%10s %15s %13s'
+column_spacer           = '%10s %15s %10s'
+
 
 #define a class for configuration
 def declare():
@@ -29,16 +32,18 @@ def declare():
         reconfigure()
 
 def reconfigure():
-    choice = False
-    while choice != 'Y' and choice != 'y' and choice != 'N' and choice != 'n':
-        choice = raw_input('Reconfigure connection? (y or n): ')
-        if choice == 'y' or choice == 'Y':
-            get_URI_info()
-        elif choice != 'n' and choice != 'N':
-            print 'Invalid choice. Please try again.'
+    choice = are_you_sure()
+    if choice:
+        get_URI_info()
+        return True
+    else:
+        return False
 
 def erase_config():
     global conn_config
+    for key in conn_config.keys():
+        conn_config[key] = ''
+    """
     conn_config['DB_URI']   = ''
     conn_config['DB_TYPE']  = ''
     conn_config['USERNAME'] = ''
@@ -46,7 +51,7 @@ def erase_config():
     conn_config['DOMAIN']   = ''
     conn_config['PORT']     = ''
     conn_config['DB_NAME']  = ''
-
+"""
 
 def change_one(key):
     conn_config[key] = raw_input(key + ' new value: ')
@@ -102,49 +107,52 @@ def uri_add(key):
 #checks for config['json.
 # if config['json is not found, the user is prompted for the config data.
 def check():
-    is_a_file = os.path.isfile('config.json')
+    is_a_file = os.path.isfile(config_file)
     if is_a_file:
-        print 'config.json found!'
+        print config_file,' found!'
         return True
     else: 
-        print 'config.json not found.'
+        print config_file, 'NOT found.'
         return False
 
 def load():
     global conn_config
     print "loading config file..."
-    filer   = open('config.json')
+    filer   = open(config_file)
     holder  = filer.read()
     holder = json.loads(holder)
 
+    #FORCE assignment of keys rather than assigning entire json object
     for key in holder.keys():
         value       = str(holder[str(key)])
         new_key     = str(key)
         del holder[key]
         holder[new_key] = value
-        print new_key, "  is  " ,holder[new_key]
         conn_config[new_key] = holder[new_key]
 
 def print_config():
     global conn_config
+    print_spacer = '%10s %6s  %10s'
     for i in conn_config.keys():
-        print i, 'is', conn_config[i]
+        print print_spacer % (i, 'equals' ,conn_config[i])
 
 def save():
     global conn_config
     json_config = json.dumps(conn_config)
     print json_config
     json_config = str(json_config)
-    filer = open('config.json', 'w')
+    filer = open(config_file, 'w')
     filer.write(json_config)
     filer.close()
 
+def delete_saved():
+
+    os.remove(config_file)
 
 def setup():
     checker = check()
     if checker:
         declare()
-        print_config()
         load()
         print_config()
     else:
@@ -152,4 +160,25 @@ def setup():
         get_URI_info()
         print_config()
         save()
-        print "file saved?:", checker()
+        checker = check()
+        print "file saved?:", checker
+
+def rewrite():
+    rewritten = reconfigure()
+    if rewritten:
+        save()
+        declare()
+        load()
+        print_config()
+    return rewritten
+
+def are_you_sure():
+    choice = False
+    while choice != 'Y' and choice != 'y' and choice != 'N' and choice != 'n':
+        choice = raw_input('Are you sure? (y or n): ')
+        if choice == 'y' or choice == 'Y':
+            return True
+        elif choice != 'n' and choice != 'N':
+            print 'Invalid choice. Please try again.'
+        else:
+            return False

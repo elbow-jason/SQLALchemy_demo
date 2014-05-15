@@ -23,9 +23,6 @@ cell_tables.Base.metadata.create_all(engine)
 
 
 
-
-
-
 session.add(current_cell)
 session.commit()
 
