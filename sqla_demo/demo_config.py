@@ -2,7 +2,6 @@
 #demo_helpers.py
 import os.path
 import json
-import unicodedata as ucd
 
 #my_db = 'postgresql://jasonlouis:password@localhost:5432/test'
 
@@ -10,40 +9,35 @@ import unicodedata as ucd
     #scope. So, there is no need to worry about the 'globals' 
     #polluting the namespace.
 
-config_file = 'config.json'
-
-conn_config = {}
-config_declared = False
-
 #a couple of templates for printing in a table
+config_file             = 'config.json'
+conn_config             = {}
 header_spacer           = '%10s %15s %13s'
 column_spacer           = '%10s %15s %10s'
-
+declared                = False
 
 #define a class for configuration
 def declare():
-    global config_declared
-    if not config_declared:
-        erase_config()
-        config_declared = True
-        print 'connection config declared...'
-    else: 
-        print 'connection config already declared...'
-        reconfigure()
+    global declared
+    blank_config()
+    print 'connection config blanked...'
+    declared = True
+
 
 def reconfigure():
-    choice = are_you_sure()
-    if choice:
-        get_URI_info()
-        return True
-    else:
-        return False
+    try:
+        chosen = choice('reconfigure?')
+        if chosen:
+            get_URI_info()
+            return True
+        else:
+            return False
+    except KeyError as e:
+        print 'KeyError for',e, 'Connection was not declared (use declared() first)'
+    print 
 
-def erase_config():
+def blank_config():
     global conn_config
-    for key in conn_config.keys():
-        conn_config[key] = ''
-    """
     conn_config['DB_URI']   = ''
     conn_config['DB_TYPE']  = ''
     conn_config['USERNAME'] = ''
@@ -51,7 +45,7 @@ def erase_config():
     conn_config['DOMAIN']   = ''
     conn_config['PORT']     = ''
     conn_config['DB_NAME']  = ''
-"""
+
 
 def change_one(key):
     conn_config[key] = raw_input(key + ' new value: ')
@@ -63,7 +57,8 @@ def get_URI_info():
 
     
     #leave prompts empty to keep defaults
-    print '\n\nLeave blank to keep current value. To change enter the new value'
+    print '----'
+    print '\nLeave blank to keep current value.\nTo change enter the new value'
         #print the current DB_URI or <blank>
     print 'Current DB URI: ', conn_config['DB_URI'] or '<blank>', '\n'
     print header_spacer%('item','current','new')
@@ -109,59 +104,91 @@ def uri_add(key):
 def check():
     is_a_file = os.path.isfile(config_file)
     if is_a_file:
-        print config_file,' found!'
         return True
     else: 
-        print config_file, 'NOT found.'
         return False
 
 def load():
     global conn_config
-    print "loading config file..."
-    filer   = open(config_file)
-    holder  = filer.read()
+    print  "loading config file..."
+    filer  = open(config_file)
+    holder = filer.read()
     holder = json.loads(holder)
 
     #FORCE assignment of keys rather than assigning entire json object
     for key in holder.keys():
-        value       = str(holder[str(key)])
-        new_key     = str(key)
+        value                   = str(holder[str(key)])
+        new_key                 = str(key)
         del holder[key]
-        holder[new_key] = value
-        conn_config[new_key] = holder[new_key]
+        holder[new_key]         = value
+        conn_config[new_key]    = holder[new_key]
 
 def print_config():
     global conn_config
-    print_spacer = '%10s %6s  %10s'
+    print_spacer = '%10s %1s  %10s'
+    print '\n'
+    print 'CURRENT CONFIG\n'
+    print print_spacer % ('item','','value')
+    print print_spacer % ('------','', '------')
     for i in conn_config.keys():
-        print print_spacer % (i, 'equals' ,conn_config[i])
+        print print_spacer % (i, ':' ,conn_config[i])
+    print '\n'
 
 def save():
     global conn_config
-    json_config = json.dumps(conn_config)
-    print json_config
-    json_config = str(json_config)
-    filer = open(config_file, 'w')
-    filer.write(json_config)
-    filer.close()
+    checker = check()
+    if checker:
+        chosen = choice('overwrite old config file?')
+    else:
+        chosen = True
+    if chosen:
+        json_config = json.dumps(conn_config)
+        json_config = str(json_config)
+        filer = open(config_file, 'w')
+        filer.write(json_config)
+        filer.close()
+        print 'file saved...'
+    else: 
+        print "config not saved."
 
-def delete_saved():
-
-    os.remove(config_file)
+def delete_config_file():
+    checker = check()
+    if checker:
+        chosen = choice("This will delete the config file. Are you sure?")
+        if chosen:
+            os.remove(config_file)
+            checker = check()
+            print "file deleted? :", not checker
+    else:
+        print "config file not found. cannot delete."
 
 def setup():
     checker = check()
-    if checker:
-        declare()
+    if (checker == True):
+        print "config file found."
         load()
         print_config()
+        chosen = choice("Change current config?")
+        if chosen:
+            new_config()
+        else:
+            print 'keeping current config...'
     else:
+        print 'config file not found.'
+        print 'initializing new config...'
         declare()
-        get_URI_info()
-        print_config()
+        new_config()
+    print "configuration setup complete..."
+
+def new_config():
+    get_URI_info()
+    print_config()
+    chosen = choice("save config?")
+    if chosen:
         save()
         checker = check()
-        print "file saved?:", checker
+        if (checker != True):
+            raise Exception('file not saved correctly or checker is broken')
 
 def rewrite():
     rewritten = reconfigure()
@@ -172,13 +199,14 @@ def rewrite():
         print_config()
     return rewritten
 
-def are_you_sure():
-    choice = False
-    while choice != 'Y' and choice != 'y' and choice != 'N' and choice != 'n':
-        choice = raw_input('Are you sure? (y or n): ')
-        if choice == 'y' or choice == 'Y':
+def choice(question):
+    chosen = False
+    while chosen != 'Y' and chosen != 'y' and chosen != 'N' and chosen != 'n':
+        question = question + '(y or n): '
+        chosen = raw_input(question)
+        if chosen == 'y' or chosen == 'Y':
             return True
-        elif choice != 'n' and choice != 'N':
+        elif chosen != 'n' and chosen != 'N':
             print 'Invalid choice. Please try again.'
         else:
             return False
