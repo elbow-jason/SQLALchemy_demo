@@ -56,7 +56,8 @@ a SQLAlchemy demo for postgreSQL
   1. `$ sudo su postgres` changes user to postgres for postgresql connection
   1. `$ psql` starts the postgresql shell
 
-  1. lists databases on the pSQL server `postgres=# \l` 
+  1. lists databases on the pSQL server `postgres=# \l`
+
         + the `postgres=#` means you are currently on the postgres db inside psql
         + You should see 3 databases: postgres, template0, and template1. Leave them alone. They are for advanced use/users only.
   1. 
