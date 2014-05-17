@@ -3,30 +3,33 @@ SQLALchemy_demo
 
 a SQLAlchemy demo for postgreSQL
 
+SQLAlchemy_demo uses 
++ Python-2.7.5
++ SQLAlchemy 
+
 More to come.... (See TODO.md)
 
-SQLAlchemy_demo uses Python-2.7.5
 
-
-
-Setup instructions (python):
+Setup instructions (python and a virtual environment):
 ---------------
   1. Get pyhton pip (http://pip.readthedocs.org/en/latest/installing.html)
-  2. `$ pip install virtualenv`
-  3. `$ mkdir virt_env`
-  4. `$ virtualenv virt_env/sqla`
+  1. Get virtualenv via pip `$ pip install virtualenv`
+  1. Make a virtual env directory `$ mkdir virt_env`
+  1. Make sqla_demo's venv `$ virtualenv virt_env/sqla_demo_venv`
+  1. Activate the venv `$ source virt_env/sqla_demo_venv/bin/activate` 
 
-Setup instructions (postgresql):
+
+Setup instructions (postgresql ):
 ---------------
   1. Install postgresql (>=9.1.13) e.g. `$ sudo apt-get install postgresql`
   2. Set up the postgresql config to trust localhost:
       edit /etc/postgresql/9.1/main/pg_hba.conf (sudo required)
 
-        below    # "local" is for Unix domain socket connections only
-
-        change  local   all     all     peer
-
-        to      local   all     all     trust
+        + below:     # "local" is for Unix domain socket connections only
+        
+          change    local   all     all     peer
+          
+          to        local   all     all     trust
 
 Start the demo: postgres db setup
 ---------------
@@ -34,8 +37,9 @@ Start the demo: postgres db setup
   1. `$ sudo su postgres` changes user to postgres for postgresql connection
   3. `$ psql` starts the postgresql shell
 
-  4. `postgres=# \l` lists databases on the pSQL server. 
-        (the `postgres=#` means you are currently on the postgres db)
+  4. lists databases on the pSQL server.  `postgres=# \l` 
+
+        (the `postgres=#` means you are currently on the postgres db inside psql)
         
         You should see 3 databases: postgres, template0, and template1. 
         
