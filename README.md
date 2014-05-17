@@ -35,12 +35,11 @@ a SQLAlchemy demo for postgreSQL
   1. sudo open pg_hba.conf `$ sudo gedit /etc/postgresql/9.1/main/pg_hba.conf`
   1. Scroll down. Set up the postgresql config to trust localhost:
 
-        > # Database administrative login by Unix domain socket
-        > local   all     postgres                         trust
-        and....
-
-        > # "local" is for Unix domain socket connections only
-        > local   all     all                             trust
+        # Database administrative login by Unix domain socket
+        local   all     postgres                         trust
+        
+        # "local" is for Unix domain socket connections only
+        local   all     all                             trust
 
     
 
@@ -57,13 +56,9 @@ a SQLAlchemy demo for postgreSQL
   1. `$ sudo su postgres` changes user to postgres for postgresql connection
   1. `$ psql` starts the postgresql shell
 
-  1. lists databases on the pSQL server.  `postgres=# \l` 
-
-        (the `postgres=#` means you are currently on the postgres db inside psql)
-        
-        You should see 3 databases: postgres, template0, and template1. 
-        
-        Leave them alone. They are for advanced use/users only.
+  1. lists databases on the pSQL server `postgres=# \l` 
+        + the `postgres=#` means you are currently on the postgres db inside psql
+        + You should see 3 databases: postgres, template0, and template1. Leave them alone. They are for advanced use/users only.
   1. 
 
 
