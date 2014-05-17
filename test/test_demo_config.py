@@ -1,3 +1,3 @@
 
-from sqla_demo import demo_config
+from sqlademo import demo_config
  
