@@ -81,22 +81,28 @@ a SQLAlchemy demo for postgreSQL and alembic
   1. interpret.
   1. move on.
 
-7. Run the app: 
+7. run the app: 
 ------------
   1. Run the app.
   1. go through the config prompts.
   1. Look at the tables of the active database.
   1. Look at the tables in python
 
-8. Change the tables of testdb (do a `git checkout` ?):
+8. change the tables:
 ------------
   1. `git checkout table-change`
   1. oh no!! the tables are different. 
   1. we gotta change our tables.
   1. move on.
 
-9. Demo alembic's schema, create_migration, migrate, and rollback:
+9. demo alembic
 ------
+  * alembic has: 
+    + schema
+    + create_migration
+    + migrate
+    + rollback
+    
   1. look at schema
   1. look at create_migration
   1. look at files.
