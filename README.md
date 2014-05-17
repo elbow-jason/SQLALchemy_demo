@@ -96,6 +96,7 @@ a SQLAlchemy demo for postgreSQL and alembic
   1. move on.
 
 9. Demo alembic's schema, create_migration, migrate, and rollback:
+------
   1. look at schema
   1. look at create_migration
   1. look at files.
