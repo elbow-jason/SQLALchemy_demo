@@ -23,7 +23,7 @@ setup(
     author_email='jlgoldb2@asu.edu',
     description='a simple demonstration for using postgreSQL via SQLAlchemy ORM',
     long_description=long_description,
-    packages=['sqla_demo'],
+    packages=['sqlademo'],
     include_package_data=True,
     platforms='any',
     test_suite='sqlademo.test.test_sqlademo',
