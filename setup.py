@@ -13,7 +13,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 
 
 setup(
-    name='sqla_demo',
+    name='sqlademo',
     version='demo',
     url='http://github.com/jlgoldb2/SQLAlchemy_demo/',
     license='MIT License',
@@ -26,7 +26,7 @@ setup(
     packages=['sqla_demo'],
     include_package_data=True,
     platforms='any',
-    test_suite='sqla_demo.test.test_sqla_demo',
+    test_suite='sqlademo.test.test_sqlademo',
     classifiers = [
         'Programming Language :: Python',
         'Development Status :: 1 - Planning',
