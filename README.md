@@ -3,12 +3,13 @@ SQLALchemy_demo
 
 a SQLAlchemy demo for postgreSQL
 
-SQLAlchemy_demo uses 
+### SQLAlchemy_demo uses:
+
 + [Python-2.7.5+](https://www.python.org/download/releases/2.7.5 "Python") 
 + [SQLAlchemy v0.9.4 ](http://docs.sqlalchemy.org/en/rel_0_9/ "SQLAlchemy")
 + [postgresql-9.3](http://www.postgresql.org/download/linux/debian/ "postgres")
 + [alembic](http://alembic.readthedocs.org/en/latest/ "alembic")
-More to come.... (See TODO.md)
++ More to come.... (See TODO.md)
 
 
 1. Setup instructions - python pip and a virtual environment:
@@ -19,7 +20,7 @@ More to come.... (See TODO.md)
   1. Make sqla_demo's venv `$ virtualenv virt_env/sqla_demo_venv`
   1. Activate the venv `$ source virt_env/sqla_demo_venv/bin/activate` 
 
-1. Setup instructions - setup demo
+2. Setup instructions - setup demo
 -------------
   1. `$ git clone https://github.com/jlgoldb2/SQLALchemy_demo.git`
   1. `$ cd SQLAlchemy_demo`
@@ -28,7 +29,7 @@ More to come.... (See TODO.md)
 
 
 
-1. Setup instructions - postgresql:
+3. Setup instructions - postgresql:
 ---------------
   1. Install postgresql (>=9.1.13) e.g. `$ sudo apt-get install postgresql`
   1. sudo open pg_hba.conf `$ sudo gedit /etc/postgresql/9.1/main/pg_hba.conf`
@@ -37,6 +38,7 @@ More to come.... (See TODO.md)
         > # Database administrative login by Unix domain socket
         > local   all     postgres                         trust
         and....
+
         > # "local" is for Unix domain socket connections only
         > local   all     all                             trust
 
@@ -45,7 +47,7 @@ More to come.... (See TODO.md)
         
   
 
-1. Start the demo: postgres db setup
+4. Start the demo: postgres db setup
 ---------------
   1  `$ sudo adduser postgres`  <-- may already exist. it's okay. proceed.
   1 give postgres a password `$ sudo passwd postgres`
