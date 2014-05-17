@@ -75,7 +75,7 @@ a SQLAlchemy demo for postgreSQL and alembic
   1. create `testdb` owned by our user `jasonlouis`: postgres=# `CREATE DATABASE testdb WITH OWNER jasonlouis;`
       + should see a `CREATE DATABASE` if it worked.
 
-
+6. Continue the demo: 
 
 
 DEV
@@ -84,4 +84,4 @@ DEV
 + dev requirements (less stable)  `pip freeze > dev-reqs.txt`
 + instruction sets:
 -------
-  + http://www.thegeekstuff.com/2009/04/linux-postgresql-install-and-configure-from-source/
+  + [intall postgreSQL in 9 steps](http://www.thegeekstuff.com/2009/04/linux-postgresql-install-and-configure-from-source/ "postgresql install")
