@@ -75,7 +75,7 @@ a SQLAlchemy demo for postgreSQL and alembic
   1. create `testdb` owned by our user `jasonlouis`: postgres=# `CREATE DATABASE testdb WITH OWNER jasonlouis;`
       + should see a `CREATE DATABASE` if it worked.
 
-6. Run the tests:
+6. run the tests:
 ----------
   1. run the tests.
   1. interpret.
@@ -102,7 +102,7 @@ a SQLAlchemy demo for postgreSQL and alembic
     + create_migration
     + migrate
     + rollback
-    
+
   1. look at schema
   1. look at create_migration
   1. look at files.
