@@ -4,9 +4,10 @@ SQLALchemy_demo
 a SQLAlchemy demo for postgreSQL
 
 SQLAlchemy_demo uses 
-+ Python-2.7.5
-+ SQLAlchemy 
-
++ [Python-2.7.5+](https://www.python.org/download/releases/2.7.5 "Python") 
++ [SQLAlchemy v0.9.4 ](http://docs.sqlalchemy.org/en/rel_0_9/ "SQLAlchemy")
++ [postgresql-9.3](http://www.postgresql.org/download/linux/debian/ "postgres")
++ [alembic](http://alembic.readthedocs.org/en/latest/ "alembic")
 More to come.... (See TODO.md)
 
 
@@ -19,7 +20,7 @@ Setup instructions (python and a virtual environment):
   1. Activate the venv `$ source virt_env/sqla_demo_venv/bin/activate` 
 
 
-Setup instructions (postgresql ):
+Setup instructions (postgresql and alembic):
 ---------------
   1. Install postgresql (>=9.1.13) e.g. `$ sudo apt-get install postgresql`
   2. Set up the postgresql config to trust localhost:
@@ -30,6 +31,8 @@ Setup instructions (postgresql ):
           change    local   all     all     peer
           
           to        local   all     all     trust
+
+  3. `pip install alembic`
 
 Start the demo: postgres db setup
 ---------------
