@@ -66,6 +66,7 @@ a SQLAlchemy demo for postgreSQL and alembic
 
 5. Continue the demo: create a user and a db
 -----------
+
     1. create a user: postgres=# `CREATE USER jasonlouis;`
         + you should see a `CREATE ROLE` message to confirm success
         + notice the `;` at the end of the command. it executes the SQL code.
