@@ -12,7 +12,7 @@ a SQLAlchemy demo for postgreSQL and alembic
 + More to come.... (See TODO.md)
 
 
-1. Setup instructions - python pip and a virtual environment:
+1. setup instructions - python pip and a virtual environment:
 ---------------
   1. Get [python pip](http://pip.readthedocs.org/en/latest/installing.html "pip") `sudo apt-get install python-pip`
   1. Get virtualenv via pip `pip install virtualenv`
@@ -20,7 +20,7 @@ a SQLAlchemy demo for postgreSQL and alembic
   1. Make sqla_demo's venv `virtualenv virt_env/sqla_demo_venv`
   1. Activate the venv `source virt_env/sqla_demo_venv/bin/activate` 
 
-2. Setup instructions - setup demo
+2. setup instructions - setup demo
 -------------
   1. `git clone https://github.com/jlgoldb2/SQLALchemy_demo.git`
   1. `cd SQLAlchemy_demo`
@@ -29,7 +29,7 @@ a SQLAlchemy demo for postgreSQL and alembic
 
 
 
-3. Setup instructions - postgresql:
+3. setup instructions - postgresql:
 ---------------
   1. Install postgresql (>=9.1.13) e.g. `sudo apt-get install postgresql`
   1. sudo open pg_hba.conf `sudo gedit /etc/postgresql/9.1/main/pg_hba.conf`
@@ -46,7 +46,7 @@ a SQLAlchemy demo for postgreSQL and alembic
         
   
 
-4. Start the demo: postgres db setup
+4. postgres and psql
 ---------------
   1.  add user postgres `sudo adduser postgres`  <-- may already exist. it's okay. proceed.
   1. give postgres a password `sudo passwd postgres`
@@ -64,7 +64,7 @@ a SQLAlchemy demo for postgreSQL and alembic
   1. list users postgres=# `\du`
 
 
-5. Continue the demo: create a user and a db
+5. create a user and a db
 -----------
 
   1. create a user: postgres=# `CREATE USER jasonlouis;`
@@ -75,7 +75,37 @@ a SQLAlchemy demo for postgreSQL and alembic
   1. create `testdb` owned by our user `jasonlouis`: postgres=# `CREATE DATABASE testdb WITH OWNER jasonlouis;`
       + should see a `CREATE DATABASE` if it worked.
 
-6. Continue the demo: 
+6. Run the tests:
+----------
+  1. run the tests.
+  1. interpret.
+  1. move on.
+
+7. Run the app: 
+------------
+  1. Run the app.
+  1. go through the config prompts.
+  1. Look at the tables of the active database.
+  1. Look at the tables in python
+
+8. Change the tables of testdb (do a `git checkout` ?):
+------------
+  1. `git checkout table-change`
+  1. oh no!! the tables are different. 
+  1. we gotta change our tables.
+  1. move on.
+
+9. Demo alembic's schema, create_migration, migrate, and rollback:
+  1. look at schema
+  1. look at create_migration
+  1. look at files.
+  1. migrate.
+  1. look at files again. see diffs.
+  1. rollback.
+  1. look at files. looks like orig.
+
+
+
 
 
 DEV
