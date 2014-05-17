@@ -49,8 +49,8 @@ a SQLAlchemy demo for postgreSQL
 
 4. Start the demo: postgres db setup
 ---------------
-  1  `$ sudo adduser postgres`  <-- may already exist. it's okay. proceed.
-  1 give postgres a password `$ sudo passwd postgres`
+  1.  `$ sudo adduser postgres`  <-- may already exist. it's okay. proceed.
+  1. give postgres a password `$ sudo passwd postgres`
   1. follow the prompts; enter the same password twice.
   1. check to see in server is started `$ service postgresql status`
   1. starts the postgres server`$ sudo service postgresql start` 
