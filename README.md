@@ -67,13 +67,13 @@ a SQLAlchemy demo for postgreSQL and alembic
 5. Continue the demo: create a user and a db
 -----------
 
-    1. create a user: postgres=# `CREATE USER jasonlouis;`
-        + you should see a `CREATE ROLE` message to confirm success
-        + notice the `;` at the end of the command. it executes the SQL code.
-    1. add a password (`password`) to the user `jasonlouis`: postgres=# `ALTER ROLE jasonlouis WITH PASSWORD 'password';`
-        + you should see a `ALTER ROLE` message to confirm success
-    1. create `testdb` owned by our user `jasonlouis`: postgres=# `CREATE DATABASE testdb WITH OWNER jasonlouis;`
-        + should see a `CREATE DATABASE` if it worked.
+  1. create a user: postgres=# `CREATE USER jasonlouis;`
+      + you should see a `CREATE ROLE` message to confirm success
+      + notice the `;` at the end of the command. it executes the SQL code.
+  1. add a password (`password`) to the user `jasonlouis`: postgres=# `ALTER ROLE jasonlouis WITH PASSWORD 'password';`
+      + you should see a `ALTER ROLE` message to confirm success
+  1. create `testdb` owned by our user `jasonlouis`: postgres=# `CREATE DATABASE testdb WITH OWNER jasonlouis;`
+      + should see a `CREATE DATABASE` if it worked.
 
 
 
