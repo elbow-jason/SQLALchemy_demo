@@ -14,7 +14,7 @@ a SQLAlchemy demo for postgreSQL
 
 1. Setup instructions - python pip and a virtual environment:
 ---------------
-  1. Get [pyhton pip](http://pip.readthedocs.org/en/latest/installing.html "pip") `sudo apt-get install python-pip`
+  1. Get [python pip](http://pip.readthedocs.org/en/latest/installing.html "pip") `sudo apt-get install python-pip`
   1. Get virtualenv via pip `pip install virtualenv`
   1. Make a virtual env directory `mkdir virt_env`
   1. Make sqla_demo's venv `virtualenv virt_env/sqla_demo_venv`
@@ -55,16 +55,26 @@ a SQLAlchemy demo for postgreSQL
   1. starts the postgres server`sudo service postgresql start` 
   1. change user to postgres for postgresql connection `sudo su postgres`
   1. start the postgresql shell `psql`
-  1. lists databases on the pSQL server `postgres=# \l`
+  1. lists databases on the pSQL server postgres=# `\l`
 
     + the `postgres=#` means you are currently on the postgres db inside psql
     + You should see 3 databases: postgres, template0, and template1. Leave them alone. They are for advanced use/users only.
   
   1. press 'q' to exit that view
-  1. list users `postgres=# \du`
+  1. list users postgres=# `\du`
 
 
-5. Continue the demo: create a user, 
+5. Continue the demo: create a user and a db
+-----------
+    1. create a user: postgres=# `CREATE USER jasonlouis;`
+        + you should see a `CREATE ROLE` message to confirm success
+        + notice the `;` at the end of the command. it executes the SQL code.
+    1. add a password to the user: postgres=# `ALTER ROLE jasonlouis WITH PASSWORD 'password';`
+        + you should see a `ALTER ROLE` message to confirm success
+    1. create a db owned by our user: postgres=# `CREATE DATABASE testdb WITH OWNER jasonlouis;`
+        + should see a `CREATE DATABASE` if it worked.
+
+
 
 
 DEV
