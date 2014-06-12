@@ -29,4 +29,8 @@ Start the demo:
 ---------------
   1. `$ sudo su postgres`
   2. `$psql`
+  3. `create database testdb`
+
+In another terminal:
+    1. 
 
