@@ -2,6 +2,7 @@ SQLALchemy_demo
 ===============
 
 a SQLAlchemy demo for postgreSQL and alembic
+Demo is on hold for the moment.
 
 ### SQLAlchemy_demo uses:
 
